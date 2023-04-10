@@ -7,22 +7,22 @@ function Home({
   setSearchValue,
   onChangeSearchInput,
   onAddToCart,
-  isLoading
+  isLoading,
+  isItemAdded
 }) {
 
   const renderItems = () => {
-    const filtredItems = items.filter((item) =>
-      item.title.toLowerCase().includes(searchValue.toLowerCase()),
-    );
-    return (isLoading ? [...Array(12)] : filtredItems).map((item, index) => (
+    const filteredItems = items ? items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())) : [];
+    return (isLoading ? [...Array(12)] : filteredItems).map((item, index) => (
       <Items
         key={index}
-        onPlus={(obj) => onAddToCart(obj)}
         loading={isLoading}
         {...item}
+        onPlus={(obj) => onAddToCart(obj)}
+        isItemAdded={isItemAdded(item && item.id)}
       />
     ));
-  };
+  }
 
   return (
     <div className="content">
