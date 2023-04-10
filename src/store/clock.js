@@ -12,7 +12,7 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-       {this.props.time.toLocaleTimeString()}
+        {this.props.time.toLocaleTimeString()}
       </div>
     );
   }
@@ -33,3 +33,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clock);
+
