@@ -1,0 +1,62 @@
+.order {
+  padding: 40px;
+
+  h1 {
+    font-size: 18px;
+  }
+}
+
+.contacts {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  input {
+    border-radius: 5px;
+    width: 250px;
+    height: 35PX;
+    border-color: #8f938a;
+    border-width: 0.5px;
+
+  }
+
+  label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+}
+
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.map {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+}
+
+
+
+.pay {
+  width: 200px;
+  height: 50px;
+  background: #8f938a;
+  border-radius: 10px;
+  border: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease-in-out;
+
+  &:active {
+    background-color: #39d078;
+  }
+}

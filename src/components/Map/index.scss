@@ -1,0 +1,16 @@
+li {
+  margin-bottom: 15px;
+}
+
+button {
+  width: 200px;
+  height: 45px;
+  border-radius: 5px;
+  border-width: 1px;
+  transition: background 1s;
+}
+
+button:active {
+  background: rgb(12, 198, 114);
+  transition: background 0s;
+}

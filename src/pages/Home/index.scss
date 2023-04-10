@@ -1,0 +1,39 @@
+.content {
+  padding: 40px;
+
+  h1 {
+    margin: 0;
+
+  }
+}
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.search-block {
+  position: relative;
+  display: flex;
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 0 15px;
+
+
+  .clear {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    top: 14px;
+    right: 15px;
+  }
+
+  input {
+    border: 0;
+    padding: 13px;
+    font-size: 16px;
+    width: 200px;
+  }
+}
