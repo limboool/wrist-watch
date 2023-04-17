@@ -1,24 +1,30 @@
-import AppContext from '../../context';
-import React from "react";
-import "./index.scss"
+import React, { useEffect } from 'react';
+import "./index.scss";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchCartAndItems, onRemoveItem } from '../../store/actions';
+import { calculateTotalPrice } from '../../store/actions';
 
-function Drawer({ onClose, onRemove, items = [] }) {
-  const { totalPrice } = React.useContext(AppContext);
+function Drawer({ cartItems, fetchCartAndItems, onRemoveItem }) {
+
+  const totalPrice = calculateTotalPrice(cartItems);
+
+  useEffect(() => {
+    fetchCartAndItems();
+  }, [fetchCartAndItems]);
+
   return (
     <div className="p-40">
-      <div className='info-box '>
+      <div className='info-box'>
         <h1>Корзина</h1>
       </div>
-
-
       <div className="drawer">
         {
-          items.length > 0 ?
+          cartItems.length > 0 ?
             (<div>
               <div className="cartTotalBlock">
                 <div className='mr-50'>
-                  <span>Итого:</span>
+                  <span>Итого: </span>
                   <b>{totalPrice} руб.</b>
                 </div>
                 <Link to="/order">
@@ -26,7 +32,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 </Link>
               </div>
               <div className="basket">
-                {items.map((obj) =>
+                {cartItems.map((obj) =>
                   <div key={obj.id} className="cartItem">
                     <div style={{ backgroundImage: `url(${obj.imageUrl})` }}
                       className="cartItemImg">
@@ -39,13 +45,12 @@ function Drawer({ onClose, onRemove, items = [] }) {
                         <b>{obj.price} руб.</b>
                       </div>
                     </div>
-                    <img onClick={() => onRemove(obj.id)}
+                    <img onClick={() => onRemoveItem(obj.id)}
                       className="removeBtn"
                       src="/img/btn-remove.svg"
                       alt="Remove" />
                   </div>)}
               </div>
-
             </div>) :
             (<div className="cartEmpty">
               <img className="mb-20" alt='' width={120} height={120} src="/img/empty-cart.jpg" />
@@ -58,4 +63,17 @@ function Drawer({ onClose, onRemove, items = [] }) {
   )
 }
 
-export default Drawer;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchCartAndItems: () => dispatch(fetchCartAndItems()),
+    onRemoveItem: (id) => dispatch(onRemoveItem(id))
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    cartItems: state.cartItems,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Drawer);
